@@ -1,4 +1,5 @@
 import React from 'react'
+import Solicitudes from './(componentes)/solicitudes';
 
 type FilterOption = "Todas" | "Pendientes"
 const map = (s?:string): FilterOption => {
@@ -8,33 +9,6 @@ const map = (s?:string): FilterOption => {
         return "Todas";
     }
 }
-
-type PriorityOption = "Alta" | "Media" | "Baja";
-
-type Request = {
-    id: number;
-    titulo: string;
-    descripcion: string;
-    estado: "Pendiente" | "Finalizada";
-    prioridad?: PriorityOption
-}
-
-const requests: Request[] = [
-    {
-        id: 1,
-        titulo: "Solicitud de Impresion de firma digital",
-        descripcion: "Necesito 5 resmas de papel tamaño A4 para la oficina.",
-        estado: "Finalizada",
-        prioridad: "Alta"
-    },
-    {
-        id: 2,
-        titulo: "Solicitud de Tóner",
-        descripcion: "Requiero un tóner para la impresora HP LaserJet.",
-        estado: "Finalizada",
-        prioridad: "Media"
-    },
-];
 
 function mapTitle(filter: FilterOption): string {
     if(filter === "Pendientes") {
@@ -55,6 +29,7 @@ export default async function RequestPage(
             <h1 className="text-4xl font-bold text-center text-[#0F1108]">
                 {mapTitle(filter)}
             </h1>
+            <Solicitudes filter={filter} />
         </div>
     )
 }
