@@ -43,6 +43,26 @@ export default function ItemCard(
         <span className='mt-3 line-clamp-3 text-sm text-neutral-600'>
             Cantidad: {item.cantidad}
         </span>
+        <div className="mt-4 flex w-full flex-wrap items-center justify-center gap-3">
+            <button
+            type = "button"
+            className={[
+                "block rounded px-2 py-1 text-md font-normal transition-colors",
+                "bg-[#dbb42c] text-white hover:bg-[#ffc600]",
+            ].join(" ")}
+            >
+                Editar
+            </button>
+            <button
+            type = "button"
+            className={[
+                "block rounded px-2 py-1 text-md font-normal transition-colors",
+              "bg-[#bc4749] text-white hover:bg-red-800",
+            ].join(" ")}
+            >
+                Eliminar
+            </button>
+        </div>
     </article>
   )
 }

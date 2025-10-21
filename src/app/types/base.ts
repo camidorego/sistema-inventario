@@ -19,3 +19,12 @@ export type Request = {
     prioridad: RequestPriority;
     fechaSolicitud: string;
 }
+
+export type UserRole = 'admin' | 'inventario' | 'usuario';
+export type User = {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    role: UserRole;
+}

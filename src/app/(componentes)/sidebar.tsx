@@ -16,10 +16,14 @@ const sidebarItemsByRole: Record<string, NavItem[]> = {
         { label: "Todas las Solicitudes", href: "/solicitudes?filter=todas", icon:"/images/solicitudes.png" },
     ],
     admin: [
-        { label: "Inventario", href: "/inventario", icon:"./images/inventario.png" },
+        { label: "Inventario", href: "/inventario", icon:"/images/inventario.png" },
         { label: "Solicitudes Pendientes", href: "/solicitudes?filter=pendientes", icon:"/images/pendientes.png" },
         { label: "Todas las Solicitudes", href: "/solicitudes?filter=todas", icon:"/images/solicitudes.png" },
-        { label: "Crear Solicitud", href: "/solicitudes/nueva", icon:"/images/nuevo.png" },
+        // { label: "Crear Solicitud", href: "/solicitudes/nueva", icon:"/images/nuevo.png" },
+        { label: "Usuarios", href: "/usuarios", icon:"/images/usuarios.svg" },
+    ],
+    usuario: [
+        { label: "Mis Solicitudes", href: "/solicitudes", icon:"/images/solicitudes.png" },
     ],
 };
 
@@ -58,7 +62,7 @@ function useIsActive(defaultHref?: string) {
 const mockUser = {
   name: "Erika Cardozo",
   email: "erika@empresa.com",
-  role: "inventario", 
+  role: "admin", 
 };
 
 export default function Sidebar({ children }: { children?: React.ReactNode }) {
@@ -94,8 +98,8 @@ export default function Sidebar({ children }: { children?: React.ReactNode }) {
                                     >
                                         <span className="flex items-center gap-2">
                                             <Image
-                                            src={item.icon}           // p.ej. "/images/inventario.png"
-                                            alt=""                    // decorativo
+                                            src={item.icon}       
+                                            alt=""                 
                                             width={20}
                                             height={20}
                                             className="h-5 w-5 shrink-1 opacity-90 group-hover:opacity-100"

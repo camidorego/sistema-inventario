@@ -1,4 +1,4 @@
-import { Item, Request } from '../types/base';
+import { Item, Request, UserRole } from '../types/base';
 
 
 export const productosItems: Item[] = [
@@ -38,5 +38,29 @@ export const solicitudesItems: Request[] = [
         estado: 'aprobada',
         fechaSolicitud: "2025-12-14",
         prioridad: 'alta'
+    },
+];
+
+export const userMocks = [
+    {
+        id: 1,
+        name: "Erika Cardozo",
+        username: "erika",
+        email: "eri@gmail.com",
+        role: "admin" as UserRole,
+    },
+    {
+        id: 2,
+        name: "Carlos Lopez",
+        username: "carlos",
+        email: "carlos@gmail.com",
+        role: "inventario" as UserRole,
+    },
+    {
+        id: 3,
+        name: "Ana Martinez",
+        username: "ana",
+        email: "ana@gmail.com",
+        role: "usuario" as UserRole,
     },
 ];
