@@ -2,6 +2,7 @@
 import React from 'react'
 import UsersList from './usersList';
 import { userMocks } from '@/app/constants/data';
+import NewUserForm from './newUserForm';
 
 export default function Usuarios() {
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
@@ -14,6 +15,7 @@ export default function Usuarios() {
                 >
                     Nuevo Usuario
                 </button>
+                <NewUserForm isOpen={isDialogOpen} onClose={()=>setIsDialogOpen(false)} onSave={()=>{}}/>
                 <UsersList users={userMocks} />
         </div>
     )
