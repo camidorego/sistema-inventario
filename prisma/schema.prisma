@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  //output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  admin
+  inventario
+  usuario
+}
+
+model User {
+  id        Int         @id @default(autoincrement())
+  email     String      @unique
+  name      String?
+  username  String      @unique
+  createdAt DateTime    @default(now())
+  role      UserRole    @default(usuario)
+
+  // relaciones
+  requests  Request[]   @relation("UserRequests")
+}
+
+model Item {
+  id          Int       @id @default(autoincrement())
+  name        String
+  descripcion String
+  quantity    Int       @default(0)
+  img         String?
+
+  // relaciones
+  requests    Request[]  @relation("ItemRequests")
+}
+
+enum RequestPriority {
+  baja
+  media
+  alta
+}
+
+enum RequestStatus {
+  pendiente
+  aprobada
+  rechazada
+}
+
+enum RequestType {
+  Impresion
+  Fotocopia
+}
+
+model Request {
+  id            Int             @id @default(autoincrement())
+
+  // foreign keys
+  soliciterId    Int
+  requiredItemId Int
+
+  // relations
+  soliciter      User           @relation("UserRequests", fields: [soliciterId], references: [id])
+  requiredItem   Item           @relation("ItemRequests", fields: [requiredItemId], references: [id])
+
+  requestType   RequestType     @default(Impresion)
+  details       String
+  quantity      Int
+  status        RequestStatus   @default(pendiente)
+  priority      RequestPriority @default(baja)
+  requestDate   DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}

@@ -38,7 +38,7 @@ export default function LoginPage() {
                 const data = await res.json().catch(() => ({ message: res.statusText }));
                 throw new Error(data?.message || "Error en el inicio de sesión");
             }
-            router.push("/dashboard");
+            router.push("/inventario");
         } catch (err: any) {
             setError(err.message || "Error inesperado");
         } finally {

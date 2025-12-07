@@ -1,7 +1,8 @@
 export type Item = {
-    nombre: string;
+    id: number;
+    name: string;
     descripcion: string;
-    cantidad: number;
+    quantity: number;
     img: string;
 }
 
@@ -13,7 +14,7 @@ export type Request = {
     solicitante: string;
     requestType: "Impresion";
     detalles: string;
-    cantidad: number;
+    quantity: number;
     itemRequerido: Item;
     estado: RequestStatus;
     prioridad: RequestPriority;

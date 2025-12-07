@@ -6,20 +6,34 @@ type NewItemFormProps = {
     onClose: () => void;
     isOpen: boolean;
     onSave: (data: any) => void;
+    item?: {
+        name: string;
+        description: string;
+        quantity: number;
+        imgUrl: string;
+    };
 }
 export default function NewItemForm(
     { 
         className,
         isOpen,
         onClose,
-        onSave 
+        onSave,
+        item 
     }: NewItemFormProps
 ){
     const dialogRef = useRef<HTMLDivElement>(null);
     const [name, setName] = React.useState("");
     const [description, setDescription] = React.useState("");
-    const [quantity, setQuantity] = React.useState(0);
+    const [quantity, setQuantity] = React.useState("");
     const [imgUrl, setImgUrl] = React.useState("");
+
+    React.useEffect(() => {
+        setName(item?.name ?? "");
+        setDescription(item?.description ?? "");
+        setQuantity(String(item?.quantity) ?? "");
+        setImgUrl(item?.imgUrl ?? "");
+    }, [item]);
 
     if (!isOpen) return null;
 
@@ -48,7 +62,7 @@ export default function NewItemForm(
                 <form
                     onSubmit={async (e) => {
                         e.preventDefault();
-                        onSave({ name, description, quantity, imgUrl });
+                        onSave({ name, description, quantity: Number(quantity), imgUrl });
                     }}
                     className="space-y-4"
                 >
@@ -91,7 +105,7 @@ export default function NewItemForm(
                         <label htmlFor="cantidad" className="block text-sm font-medium text-gray-700">
                         Cantidad
                         </label>
-                        <input type="number" id='cantidad' className="mt-2 block w-full rounded-sm border-gray-300 shadow-sm focus:border-[#6f2dbd] focus:ring-[#6f2dbd] sm:text-sm text-black px-2 py-1"
+                        <input value={quantity} onChange={(e) => setQuantity(e.target.value)} type="number" id='cantidad' className="mt-2 block w-full rounded-sm border-gray-300 shadow-sm focus:border-[#6f2dbd] focus:ring-[#6f2dbd] sm:text-sm text-black px-2 py-1"
                         />
                     </div>
 
