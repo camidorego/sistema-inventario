@@ -1,4 +1,4 @@
-import { Item } from '@/app/types/base';
+import { Item } from '@prisma/client';
 import React from 'react'
 
 

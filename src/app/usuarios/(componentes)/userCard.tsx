@@ -1,4 +1,5 @@
-import { User, UserRole } from '@/app/types/base';
+
+import { User, UserRole } from '@prisma/client';
 import React from 'react'
 
 const iconMap: Record<UserRole, string> = {
@@ -8,7 +9,7 @@ const iconMap: Record<UserRole, string> = {
 };
 
 export default function UserCard(
-    {user, className}: {user: User; className?: string}
+    {user, className, handleEdit, handleDeleteClick}: {user: User; className?: string;  handleEdit?: (user: User) => void; handleDeleteClick?: (user: User) => void}
 ) {
     
     return (
@@ -54,6 +55,9 @@ export default function UserCard(
                 "block rounded px-2 py-1 text-md font-normal transition-colors",
                 "bg-[#dbb42c] text-white hover:bg-[#ffc600]",
             ].join(" ")}
+            onClick={()=>{
+                if(handleEdit) handleEdit(user)
+            }}
             >
                 Editar
             </button>
@@ -63,6 +67,9 @@ export default function UserCard(
                 "block rounded px-2 py-1 text-md font-normal transition-colors",
               "bg-[#bc4749] text-white hover:bg-red-800",
             ].join(" ")}
+            onClick={()=>{
+                if(handleDeleteClick) handleDeleteClick(user)
+            }}
             >
                 Eliminar
             </button>

@@ -1,4 +1,5 @@
 "use client";
+import { User, UserRole } from '@prisma/client';
 import React, { useRef } from 'react'
 
 type NewUserFormProps = {
@@ -6,20 +7,29 @@ type NewUserFormProps = {
     onClose: () => void;
     isOpen: boolean;
     onSave: (data: any) => void;
+    user?: User;
 }
 export default function NewItemForm(
     { 
         className,
         isOpen,
         onClose,
-        onSave 
+        onSave,
+        user 
     }: NewUserFormProps
 ){
     const dialogRef = useRef<HTMLDivElement>(null);
     const [name, setName] = React.useState("");
     const [username, setUsername] = React.useState("");
-    const [role, setRole] = React.useState(0);
+    const [role, setRole] = React.useState<UserRole>("usuario");
     const [email, setEmail] = React.useState("");
+
+    React.useEffect(() => {
+        setName(user?.name ?? "");
+        setUsername(user?.username ?? "");
+        setRole(user?.role ?? "usuario");
+        setEmail(user?.email ?? "");
+    }, [user]);
 
     if (!isOpen) return null;
 
@@ -48,7 +58,7 @@ export default function NewItemForm(
                 <form
                     onSubmit={async (e) => {
                         e.preventDefault();
-                        onSave({ name, username, email, role });
+                        onSave({ name, username, email, role});
                     }}
                     className="space-y-4"
                 >
@@ -114,12 +124,12 @@ export default function NewItemForm(
                         <select
                             id="role"
                             value={role}
-                            onChange={(e) => setRole(parseInt(e.target.value))}
+                            onChange={(e) => setRole(e.target.value as UserRole)}
                             className="block w-full appearance-none rounded-md border border-gray-300 bg-white px-3 py-2 pr-10 shadow-sm focus:border-[#6f2dbd] focus:outline-none focus:ring-[#6f2dbd] sm:text-sm"
                         >
-                            <option value={0}>Usuario</option>
-                            <option value={2}>Inventario</option>
-                            <option value={1}>Administrador</option>
+                            <option value="usuario">Usuario</option>
+                            <option value="inventario">Inventario</option>
+                            <option value="admin">Administrador</option>
                         </select>
                         </div>
                     </div>

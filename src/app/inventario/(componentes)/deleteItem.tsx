@@ -1,13 +1,14 @@
 import React from 'react'
 
 type DeleteDialogProps = {
+  message: string;
   isOpen: boolean;
   onClose: () => void;
   onDelete: (id: number) => Promise<void> | void;
   itemId: number;
 };
 
-export default function deleteItem({ isOpen, onClose, onDelete, itemId }: DeleteDialogProps){
+export default function deleteItem({ message, isOpen, onClose, onDelete, itemId }: DeleteDialogProps){
     const dialogRef = React.useRef<HTMLDivElement>(null);
     if (!isOpen) return null;
     return (
@@ -28,13 +29,13 @@ export default function deleteItem({ isOpen, onClose, onDelete, itemId }: Delete
                 className="relative z-10 w-60 max-w-md rounded-xl bg-white p-5 shadow-xl"
             >
                 <header className="mb-4">
-                <h2 className="text-lg font-medium text-gray-900">¿Está seguro que quiere eliminar este item del inventario?</h2>
+                <h2 className="text-lg font-medium text-gray-900">{message}</h2>
                 </header>
                 <div className="flex gap-2">
                     <button
                         onClick={onClose}
                         className="rounded-md bg-[#8b8c89] px-4 py-2 text-sm font-medium text-white hover:bg-[#787977]"
-                    >Cancel</button>
+                    >Cancelar</button>
                     <button
                         onClick={async () => {
                             await onDelete(itemId);

@@ -3,8 +3,8 @@ import React from 'react'
 import ItemList from './itemList'
 import { productosItems } from '@/app/constants/data'
 import NewItemForm from './newItemForm'
-import { Item } from "@/app/types/base";
 import DeleteItem from './deleteItem';
+import { Item } from '@prisma/client';
 
 export default function Productos() {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
@@ -127,6 +127,7 @@ export default function Productos() {
             setIsDeleteDialogOpen(false);
           }}
           itemId={selectedItem?.id || 0}
+          message="¿Está seguro que quiere eliminar este item del inventario?"
         />
         <NewItemForm 
           isOpen={isDialogOpen} 

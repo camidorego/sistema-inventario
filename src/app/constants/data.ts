@@ -3,15 +3,17 @@ import { Item, Request, UserRole } from '../types/base';
 
 export const productosItems: Item[] = [
     {   
-        nombre: "Papel A4",
+        id: 1,
+        name: "Papel A4",
         descripcion: "Resma de papel tamaño A4, 500 hojas",
-        cantidad: 20,
+        quantity: 20,
         img: "./images/papel-a4.jpg"
     },
     {
-        nombre: "Papel Oficio",
+        id: 2,
+        name: "Papel Oficio",
         descripcion: "Resma de papel tamaño Oficio, 500 hojas",
-        cantidad: 30,
+        quantity: 30,
         img: "./images/papel-a4.jpg"
     },
 ];
@@ -22,7 +24,7 @@ export const solicitudesItems: Request[] = [
         solicitante: "Juan Perez",
         requestType: "Impresion",
         detalles: "Necesito imprimir documentos para la reunión del lunes.",
-        cantidad: 100,
+        quantity: 100,
         itemRequerido: productosItems[0],
         estado: 'pendiente',
         fechaSolicitud: "2025-06-15",
@@ -33,7 +35,7 @@ export const solicitudesItems: Request[] = [
         solicitante: "Maria Gomez",
         requestType: "Impresion",
         detalles: "Impresión de folletos para el evento de la empresa.",
-        cantidad: 200,
+        quantity: 200,
         itemRequerido: productosItems[1],
         estado: 'aprobada',
         fechaSolicitud: "2025-12-14",

@@ -1,6 +1,6 @@
 import React from 'react'
 import ItemCard from './itemCard';
-import { Item } from '@/app/types/base';
+import { Item } from '@prisma/client';
 
 export default function temList(
     { items, className, handleEdit, handleDeleteClick }: { items: Item[]; className?: string; handleEdit?: (item: Item) => void; handleDeleteClick?: (item: Item) => void }
